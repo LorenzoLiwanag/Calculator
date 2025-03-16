@@ -11,6 +11,6 @@ numberButtons.forEach(numberButton => {
 });
 
 
-clearButton.addEventListener("click", () =>{
+clearButton.addEventListener("click", () => {
     display.value = "";
 })
