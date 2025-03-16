@@ -1,0 +1,9 @@
+#calculator-container {
+    display: grid;
+    justify-content:center;
+    align-items: center;
+    border: 1px solid black;
+    width:30vw;
+    margin: auto;
+    margin-top:50px;
+}
