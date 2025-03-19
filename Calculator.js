@@ -48,3 +48,15 @@ const displayDeleteBtns = () => {
 displayNumbers();
 displayOperations();
 displayDeleteBtns();
+
+const displayToScreen = () => {
+    const buttons = document.querySelectorAll("button");
+
+    buttons.forEach (button => {
+        button.addEventListener("click", () => {
+            display.textContent = button.innerHTML;
+        })
+    })
+}
+
+displayToScreen();
