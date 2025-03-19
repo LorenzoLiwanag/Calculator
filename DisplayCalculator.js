@@ -3,6 +3,8 @@ const numberButtons = document.querySelectorAll(".number-btn");
 const clearButton = document.querySelector("#clear-btn");
 const numbersContainer = document.querySelector("#numbers-container");
 const operationsContainer = document.querySelector("#operations-container");
+const deleteBtnsContainer = document.querySelector("#delete-buttons-container");
+
 
 const displayNumbers = () => {
     const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
@@ -31,29 +33,18 @@ const displayOperations = () => {
 }
 
 
-const addNumberEventListeners = () => {
-    document.querySelectorAll("number-btn").forEach(numberButton => {
-        numberButton.addEventListener("click", () => {
-            display.value += numberButton.innerHTML;
-        })
-    });
+const displayDeleteBtns = () => {
+    const deleteButtons = ["Clear", "Del"];
+    const deleteButtonsSize = deleteButtons.length;
 
-
-    clearButton.addEventListener("click", () => {
-        display.value = "";
-    })
-}
-
-const addOperationEventListeners = () => {
-    document.querySelectorAll(".operation-btn").forEach(operationButton => {
-        operationButton.addEventListener("click", () => {
-            display.value += operationButton.innerHTML;
-        });
-    });
-
+    for (let i = 0 ; i < deleteButtonsSize; i++) {
+        const deleteBtn = document.createElement("button");
+        deleteBtn.classList.add("delete-btn");
+        deleteBtn.textContent = deleteButtons [i];
+        deleteBtnsContainer.appendChild(deleteBtn); 
+    }
 }
 
 displayNumbers();
 displayOperations();
-addNumberEventListeners();
-addOperationEventListeners();
+displayDeleteBtns();
