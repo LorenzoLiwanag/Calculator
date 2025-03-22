@@ -23,3 +23,5 @@ deleteBtn.addEventListener("click", () => {
 clearBtn.addEventListener("click", () => {
     screen.value = null;
 })
+
+const add = (x, y) => {}
