@@ -4,6 +4,8 @@ const operationButtons = document.querySelectorAll(".operationBtn");
 const deleteBtn = document.getElementById("deleteBtn");
 const clearBtn = document.getElementById("clearBtn");
 
+const defaultValue = screen.value = 0;
+
 numberButtons.forEach(button => {
     button.addEventListener("click", ()=> {
         screen.value += button.innerHTML;
@@ -21,6 +23,6 @@ deleteBtn.addEventListener("click", () => {
 })
 
 clearBtn.addEventListener("click", () => {
-    screen.value = null;
+    screen.value = defaultValue;
 })
 
