@@ -4,25 +4,3 @@ const operationButtons = document.querySelectorAll(".operationBtn");
 const deleteBtn = document.getElementById("deleteBtn");
 const clearBtn = document.getElementById("clearBtn");
 
-const defaultValue = screen.value = 0;
-
-numberButtons.forEach(button => {
-    button.addEventListener("click", ()=> {
-        screen.value += button.innerHTML;
-    });
-})
-
-operationButtons.forEach(button => {
-    button.addEventListener("click", ()=> {
-        screen.value += button.innerHTML;
-    });
-})
-
-deleteBtn.addEventListener("click", () => {
-    screen.value = screen.value.slice(0, -1);
-})
-
-clearBtn.addEventListener("click", () => {
-    screen.value = defaultValue;
-})
-
