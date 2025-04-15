@@ -7,9 +7,9 @@ const clearScreenBtn = document.querySelector("#clearBtn");
 
 numberBtns.forEach(button => {
     button.addEventListener("click", () => {
-        if (firstValue.textContent === "") {
+        if (operator.textContent === "") {
             firstValue.textContent += button.innerHTML;
-        } else if (operator.textContent !=="") {
+        } else {
             secondValue.textContent += button.innerHTML;
         }
     });
