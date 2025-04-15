@@ -8,21 +8,24 @@ const clearScreenBtn = document.querySelector("#clearBtn");
 numberBtns.forEach(button => {
     button.addEventListener("click", () => {
         if (firstValue.textContent === "") {
-            firstValue.textContent = button.innerHTML;
-        } else {
-            secondValue.textContent = button.innerHTML;
+            firstValue.textContent += button.innerHTML;
+        } else if (operator.textContent !=="") {
+            secondValue.textContent += button.innerHTML;
         }
-    })
-})
+    });
+});
 
 operationBtns.forEach(button => {
     button.addEventListener("click", () => {
-        operator.textContent = button.innerHTML;
-    })
-})
+        if (firstValue.textContent !== "" && operator.textContent === "") {
+            operator.textContent = button.innerHTML;
+        }
+    });
+});
+
 
 clearScreenBtn.addEventListener("click", () => {
     firstValue.textContent = ""
     secondValue.textContent = "";
     operator.textContent = "";
-})
+});
