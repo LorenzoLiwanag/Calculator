@@ -10,7 +10,11 @@
 
 <body>
     <div id="calculator">
-        <input type="text" id="display-screen" readonly>
+        <div id="screen">
+            <p id="firstValue" class="operand"></p>
+            <p id="operator"></p>
+            <p id="secondValue" class="operand"></p>
+        </div>
         <div id="buttons-container">
             <button class="numberBtn">7</button>
             <button class="numberBtn">8</button>
@@ -27,10 +31,10 @@
             <button class="numberBtn">0</button>
             <button class="numberBtn">.</button>
             <button class="operationBtn">/</button>
-            <button id ="resultBtn">=</button>
+            <button id="resultBtn">=</button>
             <span></span>
             <button id="deleteBtn">Del</button>
-            <button id ="clearBtn">Clear</button>
+            <button id="clearBtn">Clear</button>
         </div>
     </div>
 

@@ -1,6 +1,28 @@
-const screen = document.getElementById("display-screen");
-const numberButtons = document.querySelectorAll(".numberBtn");
-const operationButtons = document.querySelectorAll(".operationBtn");
-const deleteBtn = document.getElementById("deleteBtn");
-const clearBtn = document.getElementById("clearBtn");
+const firstValue = document.querySelector("#firstValue");
+const operator = document.querySelector("#operator");
+const secondValue = document.querySelector("#secondValue");
+const numberBtns = document.querySelectorAll(".numberBtn");
+const operationBtns = document.querySelectorAll(".operationBtn");
+const clearScreenBtn = document.querySelector("#clearBtn");
 
+numberBtns.forEach(button => {
+    button.addEventListener("click", () => {
+        if (firstValue.textContent === "") {
+            firstValue.textContent = button.innerHTML;
+        } else {
+            secondValue.textContent = button.innerHTML;
+        }
+    })
+})
+
+operationBtns.forEach(button => {
+    button.addEventListener("click", () => {
+        operator.textContent = button.innerHTML;
+    })
+})
+
+clearScreenBtn.addEventListener("click", () => {
+    firstValue.textContent = ""
+    secondValue.textContent = "";
+    operator.textContent = "";
+})
