@@ -4,6 +4,7 @@ const secondValue = document.querySelector("#secondValue");
 const numberBtns = document.querySelectorAll(".numberBtn");
 const operationBtns = document.querySelectorAll(".operationBtn");
 const clearScreenBtn = document.querySelector("#clearBtn");
+const deleteBtn = document.querySelector("#deleteBtn");
 const resultBtn = document.querySelector("#resultBtn");
 
 numberBtns.forEach(button => {
@@ -63,4 +64,3 @@ resultBtn.addEventListener("click", () => {
     secondValue.textContent = "";
     operator.textContent = "";
 });
-
