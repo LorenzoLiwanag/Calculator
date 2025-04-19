@@ -1,9 +1,9 @@
 const firstValue = document.querySelector("#firstValue");
 const operator = document.querySelector("#operator");
 const secondValue = document.querySelector("#secondValue");
-const result = document.querySelector("#result");
 const numberBtns = document.querySelectorAll(".numberBtn");
 const operationBtns = document.querySelectorAll(".operationBtn");
+const decimalBtn = document.querySelector("#decimalBtn");
 const clearScreenBtn = document.querySelector("#clearBtn");
 const deleteBtn = document.querySelector("#deleteBtn");
 const resultBtn = document.querySelector("#resultBtn");
@@ -19,6 +19,30 @@ clearScreenBtn.addEventListener("click", () => {
     secondValue.textContent = "";
     screenCleared = true;
 })
+
+deleteBtn.addEventListener("click", () => {
+    if (!operationSelected && firstValue.textContent.length > 0) {
+        firstValue.textContent = firstValue.textContent.slice(0, -1);
+    } else if (operationSelected && secondValue.textContent.length > 0) {
+        secondValue.textContent = secondValue.textContent.slice(0, -1);
+    }
+});
+
+
+decimalBtn.addEventListener("click", () => {
+    if (decimalBtn.innerHTML === "." && 
+        ((!operationSelected && firstValue.textContent.includes(".")) ||
+         (operationSelected && secondValue.textContent.includes(".")))) {
+        return;
+    }
+
+    if (!operationSelected) {
+        firstValue.textContent += decimalBtn.innerHTML;
+    } else {
+        secondValue.textContent += decimalBtn.innerHTML;
+    }
+});
+
 
 const selectOperation = (firstNumber, operation, secondNumber) => {
     switch (operation) {
@@ -43,26 +67,27 @@ numberBtns.forEach(button => {
 
 operationBtns.forEach(button => {
     button.addEventListener("click", () => {
-        operator.textContent = button.innerHTML;
-        operationSelected = true;
+        if (operator.textContent === "") {
+            operator.textContent = button.innerHTML;
+            operationSelected = true;
+        }
     })
 })
 
-const operate = (firstNumber, operation, secondNumber) => {
-    firstNumber = parseInt(firstValue.textContent);
+const operate = () => {
+    firstNumber = parseFloat(firstValue.textContent);
     operation = operator.textContent;
-    secondNumber = parseInt(secondValue.textContent);
+    secondNumber = parseFloat(secondValue.textContent);
 
-    result.textContent = selectOperation(firstNumber, operation, secondNumber);
+    if (isNaN(firstNumber) || isNaN(secondNumber)) return;
 
-    firstValue.textContent = "";
+    const output = selectOperation(firstNumber, operation, secondNumber);
+
+    firstValue.textContent = output.toString();
     secondValue.textContent = "";
     operator.textContent = "";
     operationSelected = false;
 
-    return result.textContent;
 }
 
-resultBtn.addEventListener("click", () => {
-    operate(firstValue, operator, secondValue);
-});
+resultBtn.addEventListener("click", operate);
