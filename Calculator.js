@@ -1,66 +1,68 @@
 const firstValue = document.querySelector("#firstValue");
 const operator = document.querySelector("#operator");
 const secondValue = document.querySelector("#secondValue");
+const result = document.querySelector("#result");
 const numberBtns = document.querySelectorAll(".numberBtn");
 const operationBtns = document.querySelectorAll(".operationBtn");
 const clearScreenBtn = document.querySelector("#clearBtn");
 const deleteBtn = document.querySelector("#deleteBtn");
 const resultBtn = document.querySelector("#resultBtn");
 
-numberBtns.forEach(button => {
-    button.addEventListener("click", () => {
-        if (operator.textContent === "") {
-            firstValue.textContent += button.innerHTML;
-        } else {
-            secondValue.textContent += button.innerHTML;
-        }
-    });
-});
-
-operationBtns.forEach(button => {
-    button.addEventListener("click", () => {
-        if (firstValue.textContent !== "" && operator.textContent === "") {
-            operator.textContent = button.innerHTML;
-        }
-    });
-});
-
+let screenCleared = false;
+let operationSelected = false;
 
 clearScreenBtn.addEventListener("click", () => {
-    firstValue.textContent = ""
-    secondValue.textContent = "";
+
+    firstValue.textContent = "";
     operator.textContent = "";
-    result.textContent = "";
-});
+    operationSelected = false;
+    secondValue.textContent = "";
+    screenCleared = true;
+})
 
+const selectOperation = (firstNumber, operation, secondNumber) => {
+    switch (operation) {
+        case "+": return firstNumber + secondNumber;
+        case "-": return firstNumber - secondNumber;
+        case "x": return firstNumber * secondNumber;
+        case "/": return firstNumber / secondNumber;
 
-const performOperation = (number1, operator, number2) => {
-    switch (operator) {
-        case "+":
-            return number1 + number2;
-        case "-":
-            return number1 - number2;
-        case "x":
-            return number1 * number2;
-        case "/":
-            return number1 / number2;
     }
 }
 
-const result = document.querySelector("#result");
+numberBtns.forEach(button => {
+    button.addEventListener("click", () => {
+        if (!operationSelected) {
 
-resultBtn.addEventListener("click", () => {
-    const num1 = parseFloat(firstValue.textContent);
-    const num2 = parseFloat(secondValue.textContent);
+            firstValue.textContent += button.innerHTML;
+        } else if (operationSelected) {
+            secondValue.textContent += button.innerHTML;
+        }
+    })
+})
 
-    if (firstValue.textContent === "" || operator.textContent === "" || secondValue.textContent === "") {
-        return;
-    }
+operationBtns.forEach(button => {
+    button.addEventListener("click", () => {
+        operator.textContent = button.innerHTML;
+        operationSelected = true;
+    })
+})
 
-    const answer = performOperation(num1, operator.textContent, num2);
+const operate = (firstNumber, operation, secondNumber) => {
+    firstNumber = parseInt(firstValue.textContent);
+    operation = operator.textContent;
+    secondNumber = parseInt(secondValue.textContent);
 
-    result.textContent = answer;
+    result.textContent = selectOperation(firstNumber, operation, secondNumber);
+
     firstValue.textContent = "";
     secondValue.textContent = "";
     operator.textContent = "";
+    operationSelected = false;
+
+    return result.textContent;
+}
+
+resultBtn.addEventListener("click", () => {
+    operate(firstValue, operator, secondValue);
 });
